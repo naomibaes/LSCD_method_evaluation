@@ -3,9 +3,9 @@ import os
 import re
 
 # Define file paths (adjusted for arousal only)
-input_dir = os.path.abspath(r"..\..\0.0_corpus_preprocessing\output\natural_lines_targets")
-vad_file_path = os.path.abspath(r"input\NRC-VAD-Lexicon.txt")
-output_folder = os.path.abspath(r"input\baselines")  # Baselines subdirectory
+input_dir = os.path.abspath(os.path.join("..", "..", "0.0_corpus_preprocessing", "output", "natural_lines_targets"))
+vad_file_path = os.path.abspath(os.path.join("input", "NRC-VAD-Lexicon.txt"))
+output_folder = os.path.abspath(os.path.join("input", "baselines"))  # Baselines subdirectory
 
 # Ensure the baselines folder exists
 os.makedirs(output_folder, exist_ok=True)
