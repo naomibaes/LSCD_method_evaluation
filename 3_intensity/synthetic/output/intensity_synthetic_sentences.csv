@@ -1,7 +1,0 @@
-target,sent_id,sentence,class,year
-abuse,1,sent,neutral,1970
-abuse,1,sent,high,1970
-abuse,1,sent,low,1970
-trauma,1,sent,neutral,2010
-trauma,1,sent,high,2010
-trauma,1,sent,low,2010

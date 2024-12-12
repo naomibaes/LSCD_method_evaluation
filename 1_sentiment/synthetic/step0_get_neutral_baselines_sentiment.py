@@ -1,14 +1,17 @@
 import pandas as pd
 import os
 import re
+import numpy as np
 
 # Define file paths
 input_dir = os.path.abspath(os.path.join("..", "..", "0.0_corpus_preprocessing", "output", "natural_lines_targets"))
 vad_file_path = os.path.abspath(os.path.join("input", "NRC-VAD-Lexicon.txt"))
 output_folder = os.path.abspath(os.path.join("input", "baselines"))  # Baselines subdirectory
+output_folder2 = os.path.abspath("input/baselines/output")  # Define a generic output directory
 
 # Ensure the baselines folder exists
 os.makedirs(output_folder, exist_ok=True)
+os.makedirs(output_folder2, exist_ok=True)
 
 # Target terms
 targets = ["abuse", "anxiety", "depression", "mental_health", "mental_illness", "trauma"]
@@ -23,20 +26,6 @@ if not os.path.exists(vad_file_path):
 
 vad_ratings = pd.read_csv(vad_file_path, sep="\t", header=0)
 vad_ratings.columns = ["word", "valence", "arousal", "dominance"]
-
-# Sort by sentiment (valence) and calculate the dynamic neutral range
-sentiment_sorted = vad_ratings.sort_values(by="valence")
-
-
-def get_dynamic_range(df, target_count=1000):
-    """Get the dynamic neutral range for sentiment."""
-    mid_start = (len(df) // 2) - (target_count // 2)
-    mid_range = df.iloc[mid_start: mid_start + target_count]["valence"]
-    return mid_range.min(), mid_range.max()
-
-
-sentiment_range = get_dynamic_range(sentiment_sorted, target_count=1000)
-print(f"Dynamic neutral sentiment range: {sentiment_range}")
 
 # Map words to sentiment for lookup
 sentiment_dict = {row["word"]: row["valence"] for _, row in vad_ratings.iterrows()}
@@ -53,6 +42,8 @@ def calculate_sentence_sentiment(sentence):
         return sentiment_sum / count
     return None
 
+# Initialize a summary list for neutral ranges
+neutral_range_summary = []
 
 # Process each target
 for target in targets:
@@ -63,27 +54,66 @@ for target in targets:
     file_path = os.path.join(input_dir, target_file)
     if os.path.exists(file_path):
         print(f"Processing file: {file_path}")
+
+        # Read sentences and calculate sentiments
+        sentences = []
         with open(file_path, "r", encoding="utf-8") as f:
             for line in f:
                 parts = line.strip().split("\t")
                 if len(parts) >= 2:
                     sentence, year = parts[0], int(parts[1])
-                    sentiment = calculate_sentence_sentiment(sentence)
+                    if 1970 <= year <= 2019:
+                        sentiment = calculate_sentence_sentiment(sentence)
+                        if sentiment is not None:
+                            sentences.append((sentence, year, sentiment))
 
-                    # Check if the sentence falls into the neutral sentiment range
-                    if sentiment is not None:
-                        if sentiment_range[0] <= sentiment <= sentiment_range[1]:
-                            neutral_sentences.append((sentence, year, sentiment))
+        # Create a DataFrame for the sentences
+        sentences_df = pd.DataFrame(sentences, columns=["sentence", "year", "sentiment"])
 
-        # Save all neutral sentences for the target
-        output_file = os.path.join(output_folder, f"{target}_neutral_baselines_sentiment.csv")
-        neutral_df = pd.DataFrame(neutral_sentences, columns=["sentence", "year", "mean_sentiment"])
-        neutral_df.to_csv(output_file, index=False)
+        # Calculate quartiles and median for the target
+        median = sentences_df["sentiment"].median()
+        q1 = sentences_df["sentiment"].quantile(0.25)
+        q3 = sentences_df["sentiment"].quantile(0.75)
 
-        # Print the number of sentences written
-        print(f"Saved neutral sentiment sentences for {target} to {output_file}.")
-        print(f"Total neutral sentences for {target}: {len(neutral_sentences)}")
+        # Group by 5-year epochs
+        sentences_df["epoch"] = (sentences_df["year"] // 5) * 5
+        grouped = sentences_df.groupby("epoch")
+
+        for epoch, group in grouped:
+            # Initialize the range with the median
+            lower, upper = median, median
+            selected_sentences = group[(group["sentiment"] >= lower) & (group["sentiment"] <= upper)]
+
+            # Expand range dynamically to hit at least 500 sentences, up to 1500 max
+            while len(selected_sentences) < 500 and (lower > q1 or upper < q3):
+                if lower > q1:
+                    lower -= 0.01
+                if upper < q3:
+                    upper += 0.01
+                selected_sentences = group[(group["sentiment"] >= lower) & (group["sentiment"] <= upper)]
+
+            # Cap at 1500 sentences if possible
+            if len(selected_sentences) > 1500:
+                selected_sentences = selected_sentences.sample(n=1500, random_state=42)
+
+            # Save selected sentences for each epoch and target
+            epoch_file = os.path.join(output_folder, f"{target}_{epoch}-{epoch+4}.baseline_1500_sentences.csv")
+            selected_sentences.to_csv(epoch_file, index=False)
+
+            # Append to neutral range summary
+            neutral_range_summary.append({
+                "target": target,
+                "epoch": f"{epoch}-{epoch+4}",
+                "lower_bound": lower,
+                "upper_bound": upper,
+                "num_sentences": len(selected_sentences)
+            })
+
     else:
         print(f"File not found for target: {target}. Expected at: {file_path}")
 
-print("All processing complete.")
+# Save the neutral range summary
+summary_file = os.path.join(output_folder2, "0_neutral_range_summary.csv")
+summary_df = pd.DataFrame(neutral_range_summary)
+summary_df.to_csv(summary_file, index=False)
+print(f"Neutral range summary saved to {summary_file}.")
