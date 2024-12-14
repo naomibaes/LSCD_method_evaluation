@@ -1,7 +1,11 @@
 import pandas as pd
 import os
-import re
 import numpy as np
+import nltk
+from nltk.tokenize import word_tokenize
+
+# Ensure NLTK tokenizers are downloaded
+nltk.download('punkt')
 
 # Define file paths
 input_dir = os.path.abspath(os.path.join("..", "..", "0.0_corpus_preprocessing", "output", "natural_lines_targets"))
@@ -30,9 +34,9 @@ vad_ratings.columns = ["word", "valence", "arousal", "dominance"]
 # Map words to sentiment for lookup
 sentiment_dict = {row["word"]: row["valence"] for _, row in vad_ratings.iterrows()}
 
-# Function to calculate sentence-level sentiment
+# Function to calculate sentence-level sentiment using NLTK tokenization
 def calculate_sentence_sentiment(sentence):
-    words = re.findall(r'\w+', sentence.lower())
+    words = word_tokenize(sentence.lower())  # Tokenize sentence using NLTK
     sentiment_sum, count = 0.0, 0
     for word in words:
         if word in sentiment_dict:

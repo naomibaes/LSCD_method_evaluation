@@ -89,7 +89,7 @@ if not epoch_count_df.empty:
     for j in range(len(targets), len(axs)):
         fig.delaxes(axs[j])  # Remove unused subplots
 
-    epoch_plot_file = os.path.join(output_folder, "epoch_counts.png")
+    epoch_plot_file = os.path.join(output_folder, "epoch_counts_sentiment.png")
     plt.savefig(epoch_plot_file, dpi=300)
     plt.close()
     print(f"Epoch plot saved to {epoch_plot_file}.")
