@@ -1,0 +1,38 @@
+The following files have issues:
+
+File: abuse_1975-1979.synthetic_sentences.csv, Number of problematic rows: 3
+File: abuse_1980-1984.synthetic_sentences.csv, Number of problematic rows: 2
+File: abuse_1985-1989.synthetic_sentences.csv, Number of problematic rows: 5
+File: abuse_1990-1994.synthetic_sentences.csv, Number of problematic rows: 1
+File: abuse_1995-1999.synthetic_sentences.csv, Number of problematic rows: 1
+File: abuse_2000-2004.synthetic_sentences.csv, Number of problematic rows: 3
+File: abuse_2005-2009.synthetic_sentences.csv, Number of problematic rows: 7
+File: abuse_2010-2014.synthetic_sentences.csv, Number of problematic rows: 4
+File: abuse_2015-2019.synthetic_sentences.csv, Number of problematic rows: 2
+
+File: anxiety_1970-1974.synthetic_sentences.csv, Number of problematic rows: 6
+File: anxiety_1975-1979.synthetic_sentences.csv, Number of problematic rows: 4
+File: anxiety_1980-1984.synthetic_sentences.csv, Number of problematic rows: 13
+File: anxiety_1985-1989.synthetic_sentences.csv, Number of problematic rows: 10
+File: anxiety_1990-1994.synthetic_sentences.csv, Number of problematic rows: 16
+File: anxiety_1995-1999.synthetic_sentences.csv, Number of problematic rows: 13
+File: anxiety_2000-2004.synthetic_sentences.csv, Number of problematic rows: 14
+File: anxiety_2005-2009.synthetic_sentences.csv, Number of problematic rows: 13
+File: anxiety_2010-2014.synthetic_sentences.csv, Number of problematic rows: 9
+File: anxiety_2015-2019.synthetic_sentences.csv, Number of problematic rows: 12
+
+File: depression_1970-1974.synthetic_sentences.csv, Number of problematic rows: 1
+File: depression_1975-1979.synthetic_sentences.csv, Number of problematic rows: 4
+File: depression_1980-1984.synthetic_sentences.csv, Number of problematic rows: 4
+File: depression_1985-1989.synthetic_sentences.csv, Number of problematic rows: 3
+File: depression_1990-1994.synthetic_sentences.csv, Number of problematic rows: 1
+File: depression_1995-1999.synthetic_sentences.csv, Number of problematic rows: 4
+File: depression_2000-2004.synthetic_sentences.csv, Number of problematic rows: 6
+File: depression_2005-2009.synthetic_sentences.csv, Number of problematic rows: 2
+File: depression_2010-2014.synthetic_sentences.csv, Number of problematic rows: 10
+File: depression_2015-2019.synthetic_sentences.csv, Number of problematic rows: 11
+
+File: mental_health_1990-1994.synthetic_sentences.csv, Number of problematic rows: 1
+
+File: trauma_1980-1984.synthetic_sentences.csv, Number of problematic rows: 1
+File: trauma_2000-2004.synthetic_sentences.csv, Number of problematic rows: 1

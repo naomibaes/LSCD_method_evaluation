@@ -1,3 +1,5 @@
+# Author: Naomi Baes and Chat GPT
+
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
@@ -80,16 +82,22 @@ if not epoch_count_df.empty:
             color=colors.get(target, "grey"), edgecolor="black"
         )
         ax.set_title(target.capitalize(), fontsize=12)
-        ax.axhline(500, color="black", linestyle="--", linewidth=1)
+        ax.set_xlabel("Epoch", fontsize=12)
+        ax.set_ylabel("Count", fontsize=12)
+        ax.axhline(500, color="black", linestyle="--", linewidth=1, label="Low threshold (500)")
         if target_data["num_sentences"].max() >= 1500:
-            ax.axhline(1500, color="grey", linestyle="--", linewidth=1)
+            ax.axhline(1500, color="darkgreen", linestyle="--", linewidth=1, label="High threshold (1500)")
         ax.set_xticks(range(len(target_data)))
-        ax.set_xticklabels(target_data["epoch"], rotation=45, ha="right", fontsize=8)
+        ax.set_xticklabels(target_data["epoch"], rotation=45, ha="right", fontsize=12)
+        ax.legend()
 
     for j in range(len(targets), len(axs)):
         fig.delaxes(axs[j])  # Remove unused subplots
 
     epoch_plot_file = os.path.join(output_folder, "epoch_counts_sentiment.png")
+    epoch_plot_file = os.path.join("../../", "figures", "plot_appendixB_sentiment.png")
+
+
     plt.savefig(epoch_plot_file, dpi=300)
     plt.close()
     print(f"Epoch plot saved to {epoch_plot_file}.")
