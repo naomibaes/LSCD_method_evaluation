@@ -1,3 +1,5 @@
+# Authors: Naomi Baes and Chat GPT
+
 import pandas as pd
 from itertools import combinations
 

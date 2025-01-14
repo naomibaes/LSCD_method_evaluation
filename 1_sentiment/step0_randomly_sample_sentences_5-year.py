@@ -1,3 +1,5 @@
+# Authors: Naomi Baes and Chat GPT
+
 import os
 import random
 import pandas as pd

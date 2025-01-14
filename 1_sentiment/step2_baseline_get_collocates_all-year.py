@@ -1,3 +1,5 @@
+# Authors: Naomi Baes and Chat GPT
+
 import glob
 import os
 import pandas as pd

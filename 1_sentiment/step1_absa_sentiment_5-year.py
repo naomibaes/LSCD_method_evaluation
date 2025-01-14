@@ -1,3 +1,5 @@
+# Author: Raphael Merx
+
 from dotenv import load_dotenv
 load_dotenv()
 from transformers import AutoTokenizer, AutoModelForSequenceClassification

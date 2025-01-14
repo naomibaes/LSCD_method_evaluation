@@ -1,3 +1,5 @@
+# Authors: Naomi Baes and Chat GPT
+
 import pandas as pd
 import spacy
 import os

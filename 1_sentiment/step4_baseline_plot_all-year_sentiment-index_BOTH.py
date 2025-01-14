@@ -1,10 +1,12 @@
+# Authors: Naomi Baes and Chat GPT
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 import numpy as np
 
 # Load the data from the CSV file
-df = pd.read_csv("output/averaged_valence_index_all-year.csv")
+df = pd.read_csv("output/baseline_averaged_valence_index_all-year.csv")
 
 # Ensure 'injection_ratio' is an integer for accurate comparisons
 df['injection_ratio'] = pd.to_numeric(df['injection_ratio'], errors='coerce')
@@ -106,5 +108,5 @@ plt.setp(legend.get_title(), fontsize=font_legend)
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 # Save the plot with adjustments
-plt.savefig("../figures/plot_all-year_sentiment_BOTH.png", dpi=600, bbox_inches='tight')
+plt.savefig("../figures/plot_all-year_sentiment_BOTH_baseline.png", dpi=600, bbox_inches='tight')
 plt.show()

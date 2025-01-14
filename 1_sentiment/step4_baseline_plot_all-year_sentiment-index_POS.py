@@ -1,10 +1,12 @@
+# Authors: Naomi Baes and Chat GPT
+
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
 # Load the data from the CSV file
 try:
-    df = pd.read_csv("output/averaged_valence_index_all-year.csv")
+    df = pd.read_csv("output/baseline_averaged_valence_index_all-year.csv")
     print("Successfully read data from CSV file.")
 except FileNotFoundError:
     print("Error: CSV file not found. Please check the file path.")
@@ -64,5 +66,5 @@ ax.legend(title="Target Terms", fontsize=12, title_fontsize=14, loc="upper cente
 
 # Save and show the plot
 plt.tight_layout()
-plt.savefig("../figures/plot_all-year_sentiment_POS.png", dpi=300, bbox_inches='tight')
+plt.savefig("../figures/plot_all-year_sentiment_POS_baseline.png", dpi=300, bbox_inches='tight')
 plt.show()

@@ -1,3 +1,5 @@
+# Authors: Naomi Baes and Chat GPT
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -7,7 +9,7 @@ from matplotlib.ticker import FuncFormatter
 
 # Load the data from the provided input
 try:
-    df = pd.read_csv("output/averaged_valence_index_5-year.csv")
+    df = pd.read_csv("output/baseline_averaged_valence_index_5-year.csv")
     print("Successfully read data from CSV file.")
 except FileNotFoundError:
     print("Error: CSV file not found. Please check the file path.")
@@ -104,5 +106,5 @@ fig.legend(legend_lines, legend_labels, loc='lower center', bbox_to_anchor=(0.5,
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 # Save and display the plot
-plt.savefig("../figures/plot_5-year_sentiment_POS.png", dpi=600, bbox_inches='tight')
+plt.savefig("../figures/plot_5-year_sentiment_POS_baseline.png", dpi=600, bbox_inches='tight')
 plt.show()
