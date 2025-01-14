@@ -5,7 +5,7 @@ from scipy.stats import chi2, shapiro, levene
 import matplotlib.pyplot as plt
 
 # Load your data
-data = pd.read_csv("output/averaged_valence_index_5-year.csv")
+data = pd.read_csv("output/baseline_averaged_valence_index_5-year.csv")
 data['injection_ratio'] = data['injection_ratio'].astype('category')
 data['epoch'] = data['epoch'].astype('category')
 

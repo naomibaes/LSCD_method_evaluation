@@ -3,7 +3,7 @@ from itertools import combinations
 
 # Load the data from the CSV file
 try:
-    df = pd.read_csv("output/averaged_valence_index_all-year.csv")
+    df = pd.read_csv("output/baseline_averaged_valence_index_all-year.csv")
     print("Successfully read data from CSV file.")
 except FileNotFoundError:
     print("Error: CSV file not found. Please check the file path.")
@@ -68,4 +68,4 @@ apd_df = pd.DataFrame({
 print(apd_df)
 
 # Optional: Save the results to a CSV file
-apd_df.to_csv("output/average_pairwise_distances_sentiment_all-year.csv", index=False)
+apd_df.to_csv("output/baseline_average_pairwise_distances_sentiment_all-year.csv", index=False)
