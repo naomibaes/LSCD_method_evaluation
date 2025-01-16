@@ -1,0 +1,14 @@
+The following files have issues:
+
+File: abuse_1990-1994.synthetic_sentences.csv, Number of problematic rows: 1
+File: abuse_1995-1999.synthetic_sentences.csv, Number of problematic rows: 1
+File: abuse_2000-2004.synthetic_sentences.csv, Number of problematic rows: 1
+File: abuse_2005-2009.synthetic_sentences.csv, Number of problematic rows: 1
+
+File: depression_2000-2004.synthetic_sentences.csv, Number of problematic rows: 1
+File: depression_2010-2014.synthetic_sentences.csv, Number of problematic rows: 1
+
+File: mental_health_1975-1979.synthetic_sentences.csv, Number of problematic rows: 1
+File: mental_health_2005-2009.synthetic_sentences.csv, Number of problematic rows: 1
+
+File: trauma_2010-2014.synthetic_sentences.csv, Number of problematic rows: 1
