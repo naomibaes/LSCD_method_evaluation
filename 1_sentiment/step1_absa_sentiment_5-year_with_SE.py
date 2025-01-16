@@ -15,6 +15,7 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from transformers import pipeline
 import torch
 import torch.nn.functional as F
+import numpy as np
 
 # Load the ABSA model and tokenizer
 model_name = "yangheng/deberta-v3-base-absa-v1.1"
@@ -60,10 +61,10 @@ class File:
         parts = re.findall(r'([a-zA-Z]+)_([0-9-]+)_synthetic_sentiment_([0-9]+)', self.path)
         return parts[0]
     
-    def calculate_sentiment_score(self) -> float:
+    def calculate_sentiment_score(self) -> List[float]:
         scores = get_sentiment_score(self.sentences, self.target)
-        self.sentiment_score = sum(scores) / len(scores)
-        return self.sentiment_score
+        self.sentiment_scores = scores
+        return scores
 
 
 class FileManager(list):
@@ -79,24 +80,27 @@ class FileManager(list):
         return [file for file in self if file.target == target and file.epoch == epoch and file.injection_ratio == injection_ratio and file.index_type == index_type]
     
     def get_results(self):
-        """ Get the average sentiment score for each target, epoch, injection_ratio combination """
+        """ Get the average sentiment score and standard errors for each target, epoch, injection_ratio combination """
         results = []
         for target, epoch, injection_ratio in self.get_all_target_epoch_injection_ratio_combinations():
-            avg_per_index = {}
+            scores_per_index = {}
             for index_type in ['positive', 'negative']:
                 files = self.get_files_for(target, epoch, injection_ratio, index_type)
-                avg_score = sum([file.sentiment_score for file in files]) / len(files)
-                avg_per_index[index_type] = avg_score
+                all_scores = [score for file in files for score in file.sentiment_scores]
+                avg_score = sum(all_scores) / len(all_scores) if all_scores else 0
+                se_score = (np.std(all_scores, ddof=1) / np.sqrt(len(all_scores))) if len(all_scores) > 1 else None
+                scores_per_index[index_type] = (avg_score, se_score)
             results.append({
                 'target': target,
                 'epoch': epoch,
                 'injection_ratio': injection_ratio,
-                f'avg_valence_index_positive': avg_per_index['positive'],
-                f'avg_valence_index_negative': avg_per_index['negative']
+                'avg_valence_index_positive': scores_per_index['positive'][0],
+                'se_valence_index_positive': scores_per_index['positive'][1],
+                'avg_valence_index_negative': scores_per_index['negative'][0],
+                'se_valence_index_negative': scores_per_index['negative'][1]
             })
         return results
     
-
 def get_sentiment_score(texts: List[str], aspect: str, batch_size: int = 16) -> List[float]:
     scores = []
     for i in range(0, len(texts), batch_size):
@@ -121,7 +125,7 @@ def get_sentiment_score(texts: List[str], aspect: str, batch_size: int = 16) -> 
     
     return scores
 
-def calculate_syntetic_files_sentiment():
+def calculate_synthetic_files_sentiment():
     all_files = glob('output/5-year/positive/*.tsv')
     all_files.extend(glob('output/5-year/negative/*.tsv'))
     all_files = [f for f in all_files if not f.endswith('lemmatized.tsv')]
@@ -131,7 +135,7 @@ def calculate_syntetic_files_sentiment():
     results = file_manager.get_results()
 
     output_folder = 'output'
-    output_file = 'absa_averaged_sentiment_index_5-year.csv'
+    output_file = 'absa_averaged_sentiment_index_5-year_with_se.csv'
     os.makedirs(output_folder, exist_ok=True)  # Ensures the output folder exists
     output_path = os.path.join(output_folder, output_file)
 
@@ -141,4 +145,6 @@ def calculate_syntetic_files_sentiment():
         writer.writeheader()
         writer.writerows(results)
 
-calculate_syntetic_files_sentiment()
+    print(f"File saved to {output_path}")
+
+calculate_synthetic_files_sentiment()

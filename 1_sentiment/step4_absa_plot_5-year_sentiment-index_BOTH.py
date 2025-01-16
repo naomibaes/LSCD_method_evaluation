@@ -9,7 +9,7 @@ from matplotlib.ticker import FuncFormatter
 
 # Load the data from the provided input
 try:
-    df = pd.read_csv("output/baseline_averaged_valence_index_5-year.csv")
+    df = pd.read_csv("output/absa_averaged_sentiment_index_5-year.csv")
     print("Successfully read data from CSV file.")
 except FileNotFoundError:
     print("Error: CSV file not found. Please check the file path.")
@@ -20,8 +20,8 @@ colors = {
     'abuse': '#8B0000',            # Dark Red
     'anxiety': '#FF6347',          # Tomato
     'depression': '#4B0082',       # Indigo
-    'mental_health': '#008080',    # Teal
-    'mental_illness': '#800080',   # Dark Purple
+    'health': '#008080',    # Teal
+    'illness': '#800080',   # Dark Purple
     'trauma': '#DC143C',           # Crimson
 }
 
@@ -44,7 +44,7 @@ fig, axes = plt.subplots(6, 1, figsize=(8, 12), sharex=True)
 axes = axes.flatten()
 
 # Target terms and label positions
-target_terms = ['abuse', 'anxiety', 'depression', 'mental_health', 'mental_illness', 'trauma']
+target_terms = ['abuse', 'anxiety', 'depression', 'health', 'illness', 'trauma']
 
 # Set labels and intervals for epochs
 epoch_labels = sorted(set(df['epoch']))
@@ -76,7 +76,8 @@ for i, term in enumerate(target_terms):
 
     # Label the target term at a fixed position on each subplot
     y_min, y_max = ax.get_ylim()
-    ax.text(1970, y_max - (y_max - y_min) / 8, term.capitalize(), fontsize=14, color='black', weight='bold')
+    label = term.replace('health', 'mental health').replace('illness', 'mental illness').capitalize()
+    ax.text(1970, y_max - (y_max - y_min) / 8, label, fontsize=14, color='black', weight='bold')
 
     # Set x-axis ticks and labels explicitly for all subplots
     ax.set_xticks(epoch_positions)  # Ensure ticks align with epoch positions
@@ -120,6 +121,5 @@ fig.subplots_adjust(bottom=0.1, top=0.95)  # Increased bottom spacing slightly f
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 # Save and display the plot
-plt.savefig("../figures/plot_5-year_sentiment_BOTH_baseline.png", dpi=600, bbox_inches='tight')
+plt.savefig("../figures/plot_5-year_sentiment_BOTH_absa.png", dpi=600, bbox_inches='tight')
 plt.show()
-

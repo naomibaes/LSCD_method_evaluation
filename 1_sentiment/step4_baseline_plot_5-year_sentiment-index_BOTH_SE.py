@@ -64,12 +64,14 @@ for i, term in enumerate(target_terms):
             
             # Positive Sentiment
             y_values_pos = data['avg_valence_index_positive']
+            y_errors_pos = data['se_valence_index_positive']
             color = adjust_color_shade(colors[term], injection_ratio)
-            ax.plot(x_values, y_values_pos, linestyle=linestyle_positive, marker='o', color=color)
+            ax.errorbar(x_values, y_values_pos, yerr=y_errors_pos, linestyle=linestyle_positive, marker='o', color=color, capsize=3)
 
             # Negative Sentiment
             y_values_neg = data['avg_valence_index_negative']
-            ax.plot(x_values, y_values_neg, linestyle=linestyle_negative, marker='x', color=color)
+            y_errors_neg = data['se_valence_index_negative']
+            ax.errorbar(x_values, y_values_neg, yerr=y_errors_neg, linestyle=linestyle_negative, marker='x', color=color, capsize=3)
 
     # Set y-axis label
     ax.set_ylabel('Sentiment', fontsize=16)
@@ -120,6 +122,5 @@ fig.subplots_adjust(bottom=0.1, top=0.95)  # Increased bottom spacing slightly f
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 
 # Save and display the plot
-plt.savefig("../figures/plot_5-year_sentiment_BOTH_baseline.png", dpi=600, bbox_inches='tight')
+plt.savefig("../figures/plot_5-year_sentiment_BOTH_baseline_SE.png", dpi=600, bbox_inches='tight')
 plt.show()
-
