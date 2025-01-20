@@ -34,12 +34,8 @@ class File:
         return self.file_details[0]
     
     @property
-    def epoch(self):
-        return self.file_details[1]
-    
-    @property
     def injection_ratio(self):
-        return self.file_details[2]
+        return self.file_details[1]
     
     @property
     def index_type(self):
@@ -58,7 +54,7 @@ class File:
 
     @cached_property
     def file_details(self):
-        parts = re.findall(r'([a-zA-Z]+)_([0-9-]+)_synthetic_sentiment_([0-9]+)', self.path)
+        parts = re.findall(r'([a-zA-Z]+)_synthetic_sentiment_([0-9]+)', self.path)
         return parts[0]
     
     def calculate_sentiment_score(self) -> List[float]:
@@ -71,28 +67,27 @@ class FileManager(list):
     def __init__(self, files: List[File]):
         super().__init__(files)
     
-    def get_all_target_epoch_injection_ratio_combinations(self):
-        combinations = set([(file.target, file.epoch, file.injection_ratio) for file in self])
-        # sort them by (target, epoch, injection_ratio)
-        return sorted(combinations, key=lambda x: (x[0], x[1], int(x[2])))
+    def get_all_target_injection_ratio_combinations(self):
+        combinations = set([(file.target, file.injection_ratio) for file in self])
+        # sort them by (target, injection_ratio)
+        return sorted(combinations, key=lambda x: (x[0], int(x[1])))
     
-    def get_files_for(self, target: str, epoch: str, injection_ratio: str, index_type: str):
-        return [file for file in self if file.target == target and file.epoch == epoch and file.injection_ratio == injection_ratio and file.index_type == index_type]
+    def get_files_for(self, target: str, injection_ratio: str, index_type: str):
+        return [file for file in self if file.target == target and file.injection_ratio == injection_ratio and file.index_type == index_type]
     
     def get_results(self):
-        """ Get the average sentiment score and standard errors for each target, epoch, injection_ratio combination """
+        """ Get the average sentiment score and standard errors for each target, injection_ratio combination """
         results = []
-        for target, epoch, injection_ratio in self.get_all_target_epoch_injection_ratio_combinations():
+        for target, injection_ratio in self.get_all_target_injection_ratio_combinations():
             scores_per_index = {}
             for index_type in ['positive', 'negative']:
-                files = self.get_files_for(target, epoch, injection_ratio, index_type)
+                files = self.get_files_for(target, injection_ratio, index_type)
                 all_scores = [score for file in files for score in file.sentiment_scores]
                 avg_score = sum(all_scores) / len(all_scores) if all_scores else 0
                 se_score = (np.std(all_scores, ddof=1) / np.sqrt(len(all_scores))) if len(all_scores) > 1 else None
                 scores_per_index[index_type] = (avg_score, se_score)
             results.append({
                 'target': target,
-                'epoch': epoch,
                 'injection_ratio': injection_ratio,
                 'avg_valence_index_positive': scores_per_index['positive'][0],
                 'se_valence_index_positive': scores_per_index['positive'][1],

@@ -36,12 +36,18 @@ marker_style = {
 # Sorted list of target terms
 target_terms = sorted(["trauma", "anxiety", "depression", "mental_health", "mental_illness", "abuse"])
 
+# Map for legend labels
+legend_labels = {
+    'trauma': 'Trauma',
+    'anxiety': 'Anxiety',
+    'depression': 'Depression',
+    'mental_health': 'Mental Health',
+    'mental_illness': 'Mental Illness',
+    'abuse': 'Abuse'
+}
+
 # Create subplots
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 14), sharex=True, gridspec_kw={'hspace': 0.1})
-
-# Formatting function for y-axis ticks
-def format_y_ticks(x, pos):
-    return f'{x:.2f}'
 
 # Plotting with error bars
 for term in target_terms:
@@ -55,22 +61,31 @@ for term in target_terms:
                      yerr=sorted_data['se_valence_index_negative'], fmt='o-', color=colors[term],
                      linestyle=line_styles[term], marker=marker_style[term], markersize=14, linewidth=3)
 
+# Add labels to the upper left corner
+ax1.text(0.03, 0.95, 'Positive Sentiment Injection', transform=ax1.transAxes, fontsize=28, verticalalignment='top')
+ax2.text(0.03, 0.95, 'Negative Sentiment Injection', transform=ax2.transAxes, fontsize=28, verticalalignment='top')
+
 # Add grey shading for certain injection levels
 for ax in [ax1, ax2]:
     ax.axvspan(10, 90, color='grey', alpha=0.2)
     ax.axvspan(90, 105, color='darkgrey', alpha=0.5)
 
+# Formatting function for y-axis ticks
+def format_y_ticks(x, pos):
+    """ Format y-axis tick labels to two decimal places """
+    return f'{x:.2f}'
+
 # Set y-axis limits and ticks
-ax1.set_ylim(4.99, 5.90)
-ax2.set_ylim(4.99, 5.90)
+ax1.set_ylim(4.95, 5.90)
+ax2.set_ylim(4.94, 5.90)
 y_ticks = np.arange(5.00, 5.91, 0.10)
 ax1.set_yticks(y_ticks)
 ax2.set_yticks(y_ticks)
 
 # Axis labels and ticks
 ax2.set_xlabel('Synthetic Injection Levels (%)', fontsize=32)
-ax1.set_ylabel('Sentiment Index', fontsize=32)
-ax2.set_ylabel('Sentiment Index', fontsize=32)
+ax1.set_ylabel('Valence Index (±SE)', fontsize=32)
+ax2.set_ylabel('Valence Index (±SE)', fontsize=32)
 ax2.set_xticks([0, 20, 40, 60, 80, 100])
 ax2.set_xticklabels(['0%', '20%', '40%', '60%', '80%', '100%'], fontsize=28)
 for ax in [ax1, ax2]:
@@ -79,8 +94,10 @@ for ax in [ax1, ax2]:
     ax.tick_params(axis='both', labelsize=28)
 
 # Legend
-handles = [plt.Line2D([0], [0], color=colors[term], linestyle=line_styles[term], marker=marker_style[term], markersize=14, linewidth=3, label=f'{term.capitalize()}') for term in target_terms]
-legend = fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 0.04), fontsize=30, ncol=3, frameon=False, title="Target Terms")
+handles = [plt.Line2D([0], [0], color=colors[term], linestyle=line_styles[term], marker=marker_style[term],
+                      markersize=14, linewidth=3, label=legend_labels[term]) for term in target_terms]
+legend = fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 0.04), fontsize=30, ncol=3,
+                    frameon=False, title="Target Terms")
 plt.setp(legend.get_title(), fontsize=30)
 
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])

@@ -43,8 +43,16 @@ def format_y_ticks(x, pos):
 fig, axes = plt.subplots(6, 1, figsize=(8, 12), sharex=True)
 axes = axes.flatten()
 
-# Target terms and label positions
+# Target terms and human-readable labels
 target_terms = ['abuse', 'anxiety', 'depression', 'mental_health', 'mental_illness', 'trauma']
+readable_labels = {
+    'mental_health': 'Mental Health',
+    'mental_illness': 'Mental Illness',
+    'abuse': 'Abuse',
+    'anxiety': 'Anxiety',
+    'depression': 'Depression',
+    'trauma': 'Trauma'
+}
 
 # Set labels and intervals for epochs
 epoch_labels = sorted(set(df['epoch']))
@@ -74,9 +82,9 @@ for i, term in enumerate(target_terms):
     # Set y-axis label
     ax.set_ylabel('Sentiment', fontsize=16)
 
-    # Label the target term at a fixed position on each subplot
+    # Label the target term with the human-readable label
     y_min, y_max = ax.get_ylim()
-    ax.text(1970, y_max - (y_max - y_min) / 8, term.capitalize(), fontsize=14, color='black', weight='bold')
+    ax.text(1970, y_max - (y_max - y_min) / 7, readable_labels[term], fontsize=14, color='black', weight='bold')
 
     # Set x-axis ticks and labels explicitly for all subplots
     ax.set_xticks(epoch_positions)  # Ensure ticks align with epoch positions
@@ -122,4 +130,3 @@ plt.tight_layout(rect=[0, 0.03, 1, 0.95])
 # Save and display the plot
 plt.savefig("../figures/plot_5-year_sentiment_BOTH_baseline.png", dpi=600, bbox_inches='tight')
 plt.show()
-

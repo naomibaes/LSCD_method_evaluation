@@ -77,7 +77,7 @@ for i, term in enumerate(target_terms):
     # Label the target term at a fixed position on each subplot
     y_min, y_max = ax.get_ylim()
     label = term.replace('health', 'mental health').replace('illness', 'mental illness').capitalize()
-    ax.text(1970, y_max - (y_max - y_min) / 8, label, fontsize=14, color='black', weight='bold')
+    ax.text(1970, y_max - (y_max - y_min) / 7, label, fontsize=14, color='black', weight='bold')
 
     # Set x-axis ticks and labels explicitly for all subplots
     ax.set_xticks(epoch_positions)  # Ensure ticks align with epoch positions

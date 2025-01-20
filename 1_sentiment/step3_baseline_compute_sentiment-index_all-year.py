@@ -88,8 +88,8 @@ def process_collocates(input_dir, output_dir, warriner_ratings, targets):
             'se_valence_index_positive': 'mean',
             'se_valence_index_negative': 'mean'
         }).reset_index()
-        final_df.to_csv(os.path.join(output_dir, 'averaged_valence_index_all-year.csv'), index=False)
-        print(f"Output written to: {os.path.join(output_dir, 'averaged_valence_index_all-year.csv')}")
+        final_df.to_csv(os.path.join(output_dir, 'baseline_averaged_valence_index_all-year.csv'), index=False)
+        print(f"Output written to: {os.path.join(output_dir, 'baseline_averaged_valence_index_all-year.csv')}")
     else:
         print("No data processed, check input files and parameters.")
 

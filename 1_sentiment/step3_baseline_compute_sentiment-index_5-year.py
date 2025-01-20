@@ -92,7 +92,7 @@ def process_collocates(input_dir, output_dir, warriner_ratings):
         ).reset_index()
 
         # Save to CSV
-        pivot_df.to_csv(os.path.join(output_dir, 'averaged_valence_index_5-year.csv'), index=False)
+        pivot_df.to_csv(os.path.join(output_dir, 'baseline_averaged_valence_index_5-year.csv'), index=False)
     else:
         print("No valid data to process.")
 

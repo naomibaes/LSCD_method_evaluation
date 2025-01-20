@@ -75,7 +75,7 @@ for i, term in enumerate(target_terms):
 
     # Position the term label at a fixed position
     y_min, y_max = ax.get_ylim()
-    ax.text(1970, y_max - (y_max - y_min) / 9, term.capitalize(), fontsize=14, color='black', weight='bold')
+    ax.text(1970, y_max - (y_max - y_min) / 7, term.capitalize(), fontsize=14, color='black', weight='bold')
 
     # Set y-axis label
     ax.set_ylabel('Intensity', fontsize=16)
