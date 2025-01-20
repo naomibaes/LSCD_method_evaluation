@@ -1,0 +1,6 @@
+Metrics by Model:
+                                  accuracy  precision    recall  f1_score
+model                                                                    
+dmis-lab/biobert-base-cased-v1.1  0.233333   0.300000  0.157895  0.206897
+roberta-base                      0.766667   0.730769  1.000000  0.844444
+roberta-large                     0.766667   0.730769  1.000000  0.844444
