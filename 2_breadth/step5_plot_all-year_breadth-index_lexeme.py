@@ -5,7 +5,7 @@ import numpy as np
 
 # Load the data from the CSV file
 try:
-    df = pd.read_csv("output/baseline_final_combined.all-year.cds_mpnet.csv")
+    df = pd.read_csv("output/baseline_final_combined.all-year.cds_lexeme.csv")
     print("Successfully read data from CSV file.")
 except FileNotFoundError:
     print("Error: CSV file not found. Please check the file path.")
@@ -60,10 +60,10 @@ ax.axvspan(10, 90, color='grey', alpha=0.2)
 ax.axvspan(90, 105, color='darkgrey', alpha=0.5)
 
 # Set y-axis limits and ticks
-y_min = 0.66
-y_max = 0.77  # Fixed at 0.76
+y_min = 0
+y_max = 0.35  # Fixed at 0.76
 ax.set_ylim(y_min, y_max)
-y_ticks = np.arange(y_min, y_max + 0.0, 0.02)  # Adjusted increment to 0.02
+y_ticks = np.arange(y_min, y_max + 0.05, 0.05)  # Adjusted increment to 0.02
 ax.set_yticks(y_ticks)
 
 # Axis labels and ticks
@@ -82,5 +82,5 @@ plt.setp(legend.get_title(), fontsize=30)
 
 # Save and show the plot
 plt.tight_layout(rect=[0, 0.08, 1, 0.95])  # Adjusted rect to add more space for the legend
-plt.savefig("../figures/plot_all-year_breadth_baseline_with_SE_baseline.png", dpi=600, bbox_inches='tight')
+plt.savefig("../figures/plot_all-year_breadth_baseline_with_SE_lexeme.png", dpi=600, bbox_inches='tight')
 plt.show()
