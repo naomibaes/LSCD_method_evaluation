@@ -3,6 +3,7 @@
 from tqdm import tqdm  # For progress visualization
 from sentence_transformers import SentenceTransformer
 import os
+import csv
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import codecs  # Import the 'codecs' module for file I/O with specific encodings
@@ -56,12 +57,9 @@ def main(data_folders, model, targets=None):
                     print(f"Processing file: {file_path}")
                     
                     try:
-                        sentences = []
-                        with codecs.open(file_path, "r", encoding="utf-8") as f:
-                            for line in f:
-                                # Take only the first part of the line as the sentence, ignoring other parts
-                                sentence = line.strip().split(",")[0]
-                                sentences.append(sentence)
+                        with open(file_path, "r", encoding="utf-8") as f:
+                            reader = csv.reader(f)
+                            sentences = [row[0] for row in reader]
 
                         # Generate embeddings for the sentences in batches
                         embeddings = generate_embeddings(sentences, model)
