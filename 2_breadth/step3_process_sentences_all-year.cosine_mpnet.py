@@ -1,4 +1,4 @@
-# Author: Naomi Baes and Chat GPT
+# Author: Naomi Baes, Chat GPT, and Raphael Merx
 
 from tqdm import tqdm  # For progress visualization
 from sentence_transformers import SentenceTransformer
