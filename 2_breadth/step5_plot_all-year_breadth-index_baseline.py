@@ -84,5 +84,5 @@ plt.setp(legend.get_title(), fontsize=30)
 
 # Save and show the plot
 plt.tight_layout(rect=[0, 0.08, 1, 0.95])  # Adjusted rect to add more space for the legend
-plt.savefig("../figures/plot_all-year_breadth_baseline_with_SE_baseline.png", dpi=600, bbox_inches='tight')
+plt.savefig("../figures/plot_all-year_breadth_baseline_with_SE.png", dpi=600, bbox_inches='tight')
 plt.show()
