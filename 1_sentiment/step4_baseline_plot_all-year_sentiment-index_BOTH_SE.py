@@ -10,10 +10,10 @@ df['injection_ratio'] = pd.to_numeric(df['injection_ratio'], errors='coerce')
 # Define colors, line styles, and marker styles
 colors = {
     'abuse': '#8B0000',
-    'anxiety': '#FF6347',
-    'depression': '#4B0082',
+    'anxiety': '#FF4500',
+    'depression': '#483D8B',
     'mental_health': '#008080',
-    'mental_illness': '#800080',
+    'mental_illness': '#6A0DAD',
     'trauma': '#DC143C',
 }
 line_styles = {
@@ -67,8 +67,8 @@ ax2.text(0.03, 0.95, 'Negative Sentiment Injection', transform=ax2.transAxes, fo
 
 # Add grey shading for certain injection levels
 for ax in [ax1, ax2]:
-    ax.axvspan(10, 90, color='grey', alpha=0.2)
-    ax.axvspan(90, 105, color='darkgrey', alpha=0.5)
+    ax.axvspan(10, 90, color='darkgrey', alpha=0.7)
+    ax.axvspan(90, 105, color='darkgrey', alpha=1)
 
 # Formatting function for y-axis ticks
 def format_y_ticks(x, pos):
