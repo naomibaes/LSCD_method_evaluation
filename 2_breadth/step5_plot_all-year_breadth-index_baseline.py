@@ -14,11 +14,12 @@ except FileNotFoundError:
 colors = {
     'Abuse': '#8B0000',
     'Anxiety': '#FF6347',
-    'Depression': '#4B0082',
+    'Depression': '#483D8B',
     'Mental Health': '#008080',
-    'Mental Illness': '#800080',
-    'Trauma': '#DC143C',
+    'Mental Illness': '#6A0DAD',
+    'Trauma': '#D7191C',
 }
+
 line_styles = {
     'Abuse': '-',
     'Anxiety': '--',
@@ -56,21 +57,21 @@ for term in sorted_target_terms:
                     linestyle=line_styles[term], marker=marker_style[term], markersize=14, linewidth=3)
 
 # Add grey shading for certain injection levels
-ax.axvspan(10, 90, color='grey', alpha=0.2)
-ax.axvspan(90, 105, color='darkgrey', alpha=0.5)
+ax.axvspan(10, 90, color='darkgrey', alpha=0.7)
+ax.axvspan(90, 105, color='darkgrey', alpha=1)
 
 # Set y-axis limits and ticks
-y_min = 0.66
-y_max = 0.77  # Fixed at 0.76
+y_min = 0.56
+y_max = 0.72  # Fixed at 0.76
 ax.set_ylim(y_min, y_max)
 y_ticks = np.arange(y_min, y_max + 0.0, 0.02)  # Adjusted increment to 0.02
 ax.set_yticks(y_ticks)
 
-ax.text(0.03, 0.95, 'Diverse Contexts Injection', transform=ax.transAxes, fontsize=28, verticalalignment='top')
+ax.text(0.03, 0.95, 'Diverse Contexts Injection', transform=ax.transAxes, fontsize=28, verticalalignment='top', fontweight='bold')
 
 # Axis labels and ticks
 ax.set_xlabel('Synthetic Injection Levels (%)', fontsize=32)
-ax.set_ylabel('Breadth Index (±SE)', fontsize=32)
+ax.set_ylabel('Cosine Distance (±SE)', fontsize=32)
 ax.set_xticks([0, 20, 40, 60, 80, 100])
 ax.set_xticklabels(['0%', '20%', '40%', '60%', '80%', '100%'], fontsize=28)
 ax.set_xlim(-5, 105)
@@ -84,5 +85,5 @@ plt.setp(legend.get_title(), fontsize=30)
 
 # Save and show the plot
 plt.tight_layout(rect=[0, 0.08, 1, 0.95])  # Adjusted rect to add more space for the legend
-plt.savefig("../figures/plot_all-year_breadth_baseline_with_SE.png", dpi=600, bbox_inches='tight')
+plt.savefig("../figures/final/plot_all-year_breadth_baseline_with_SE.png", dpi=600, bbox_inches='tight')
 plt.show()
