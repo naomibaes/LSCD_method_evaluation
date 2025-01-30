@@ -8,7 +8,7 @@ def load_warriner_ratings(filename):
     return pd.read_csv(filename)
 
 def extract_file_details(filename):
-    """Extract target and injection ratio from filename."""
+    """Extract target and injection ratio from filename, removing the '_synthetic_sentiment' suffix."""
     parts = filename.split('_')
     try:
         target = parts[0]
@@ -17,6 +17,9 @@ def extract_file_details(filename):
             if parts[i][0].isdigit():
                 break
             target += '_' + parts[i]
+
+        # Remove the '_synthetic_sentiment' suffix
+        target = target.replace('_synthetic_sentiment', '')
 
         # The part that is likely to start with digits is considered the start of the injection ratio part
         injection_ratio_part = parts[i]
@@ -27,13 +30,6 @@ def extract_file_details(filename):
         return None, None
 
     return target, injection_ratio
-
-# Example Usage:
-filename = "abuse_synthetic_sentiment_0.10_lemmatized_collocates.csv"
-target, injection_ratio = extract_file_details(filename)
-print(f"Target: {target}, Injection Ratio: {injection_ratio}")
-
-#Error processing filename abuse_synthetic_sentiment_0.10_lemmatized_collocates.csv: list index out of range
 
 def normalize_values(value, min_val, max_val):
     """Normalize values to a scale from 0 to 1."""
