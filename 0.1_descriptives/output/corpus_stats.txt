@@ -1,0 +1,6 @@
+Corpus statistics:  abstract_year_journal.csv.mental
+  Tokens: 142093681
+  Lines: 859704
+  Min Year: 1970
+  Max Year: 2019
+
