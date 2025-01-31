@@ -6,7 +6,7 @@ import numpy as np
 import logging
 from functools import cached_property
 from dataclasses import dataclass
-from typing import List
+from typing import List, Dict
 from tqdm import tqdm
 from sklearn.metrics.pairwise import cosine_similarity
 from WordTransformer import WordTransformer, InputExample
@@ -15,15 +15,14 @@ targets = ["trauma", "anxiety", "depression", "mental_health", "mental_illness",
 
 
 def calculate_dissimilarity_scores(embeddings1, embeddings2=None) -> np.ndarray:
+    """ Return the dissimilarity scores between all possible pairs of embeddings. """
     if embeddings2 is None:
-        # Original behavior - comparing within one matrix
+        # Comparing within one matrix
         similarity_matrix = cosine_similarity(embeddings1)
         dissimilarity_scores = 1 - similarity_matrix
-        
-        # Get the shape of the dissimilarity matrix
-        n = dissimilarity_scores.shape[0]
-        
+
         # Create a mask to select the upper triangular part (excluding diagonal)
+        n = dissimilarity_scores.shape[0]
         upper_triangular_mask = np.triu(np.ones((n, n)), k=1)
         
         # Apply the mask to get the upper triangular part of the dissimilarity matrix
@@ -36,6 +35,16 @@ def calculate_dissimilarity_scores(embeddings1, embeddings2=None) -> np.ndarray:
         dissimilarity_scores = 1 - similarity_matrix
         # Return full matrix since there's no redundancy when comparing different sets
         return dissimilarity_scores.flatten()
+
+
+def save_to_csv(results: List[Dict], filename: str):
+    with open(filename, 'w') as csvfile:
+        fieldnames = results[0].keys()
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for result in results:
+            writer.writerow(result)
+    print(f"Saved {len(results)} results to {filename}")
 
 
 @dataclass(frozen=True)
@@ -72,7 +81,12 @@ class File:
     @cached_property
     def file_name(self) -> str:
         return os.path.basename(self.path)
-    
+
+    @cached_property
+    def is_5_year_file(self) -> bool:
+        # year would be of the form 1980-1984, check if there is any using regex
+        return bool(re.search(r'\d{4}-\d{4}', self.file_name))
+
     @cached_property
     def injection_level(self) -> int:
         """Extract the injection level from the file name.
@@ -80,7 +94,10 @@ class File:
         e.g. abuse_1980-1984_synthetic_20_1 -> 20
         e.g. abuse_synthetic_breadth_0_46.csv -> 0
         """
-        return [int(x) for x in re.findall(r'_(\d+)', self.file_name)][0]
+        if self.is_5_year_file:
+            return [int(x) for x in re.findall(r'_(\d+)', self.file_name)][1]
+        else:
+            return [int(x) for x in re.findall(r'_(\d+)', self.file_name)][0]
     
     @cached_property
     def iteration(self) -> int:
@@ -89,12 +106,7 @@ class File:
         e.g. abuse_1980-1984_synthetic_20_1 -> 1
         e.g. abuse_synthetic_breadth_0_46.csv -> 46
         """
-        try:
-            # pattern for the 2_breadth files
-            return [int(x) for x in re.findall(r'_(\d+)', self.file_name)][1]
-        except IndexError:
-            # pattern for the 1_sentiment files
-            return [int(x) for x in re.findall(r'\.(\d+)', self.file_name)][0]
+        return [int(x) for x in re.findall(r'[_\.](\d+)', self.file_name)][-1]
 
     def __post_init__(self):
         try:
@@ -179,8 +191,10 @@ class FileManager:
             pickle.dump(inputs_to_embeddings, f)
         return inputs_to_embeddings
 
-    def get_files_for(self, injection_level, target, iteration=None) -> List[File]:
+    def get_files_for(self, injection_level, target, iteration=None, year=None) -> List[File]:
         files = [f for f in self.files if f.injection_level == injection_level and f.target == target]
         if iteration is not None:
             files = [f for f in files if f.iteration == iteration]
+        if year is not None:
+            files = [f for f in files if year in f.file_name]
         return files
