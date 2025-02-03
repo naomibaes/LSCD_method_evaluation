@@ -26,7 +26,7 @@ targets = ['abuse', 'anxiety', 'depression', 'mental_health', 'mental_illness', 
 injection_ratios = [0.5] * 6  # All ratios are 0.5, but we differentiate rounds
 
 # Logging helper
-def log_message(message, log_buffer=[]):
+def log_message(message, log_buffer=[], max_lines=1000):
     log_buffer.append(message)
     if len(log_buffer) >= 50:
         with open(log_file_path, "a", encoding="utf-8") as log_file:

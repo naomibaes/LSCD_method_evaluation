@@ -22,7 +22,7 @@ os.makedirs(output_dir, exist_ok=True)
 
 log_file_path = os.path.join(base_dir, "warnings.log")
 
-def log_message(message):
+def log_message(message, max_lines=1000):
     """Logs messages to a file."""
     with open(log_file_path, "a") as log_file:
         log_file.write(message + "\n")
