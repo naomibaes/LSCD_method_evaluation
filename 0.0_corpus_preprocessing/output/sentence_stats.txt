@@ -1,0 +1,10 @@
+Total lines: 5796467
+Minimum year: 1930
+Maximum year: 2019
+
+Statistics for data between 1970 and 2016:
+Total lines: 5214227
+Minimum year (1970-2016): 1970
+Maximum year (1970-2016): 2016
+
+Journal Percentages:
