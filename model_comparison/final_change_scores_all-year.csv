@@ -1,10 +1,10 @@
 target,change_score,condition,dimension,measure
-abuse,0.020930364296066,Decrease,Sentiment,SIB
-anxiety,0.0041481697479192,Decrease,Sentiment,SIB
-depression,0.0154191596354646,Decrease,Sentiment,SIB
-mental_health,0.0154611948284791,Decrease,Sentiment,SIB
-mental_illness,0.0217074134296747,Decrease,Sentiment,SIB
-trauma,0.0179136967323769,Decrease,Sentiment,SIB
+abuse,-0.020930364296066,Decrease,Sentiment,SIB
+anxiety,-0.0041481697479192,Decrease,Sentiment,SIB
+depression,-0.0154191596354646,Decrease,Sentiment,SIB
+mental_health,-0.0154611948284791,Decrease,Sentiment,SIB
+mental_illness,-0.0217074134296747,Decrease,Sentiment,SIB
+trauma,-0.0179136967323769,Decrease,Sentiment,SIB
 abuse,0.0371176455446454,Increase,Sentiment,SIB
 anxiety,0.0478707307218134,Increase,Sentiment,SIB
 depression,0.0338427484743821,Increase,Sentiment,SIB
@@ -17,31 +17,31 @@ depression,0.0335873697865094,Increase,Intensity,SIB
 mental_health,0.0236064615197832,Increase,Intensity,SIB
 mental_illness,0.0283549066039739,Increase,Intensity,SIB
 trauma,0.0243956646902969,Increase,Intensity,SIB
-abuse,0.0249126687113891,Decrease,Intensity,SIB
-anxiety,0.0329948191315345,Decrease,Intensity,SIB
-depression,0.0384141344486076,Decrease,Intensity,SIB
-mental_health,0.0186412552553814,Decrease,Intensity,SIB
-mental_illness,0.0290569647498303,Decrease,Intensity,SIB
-trauma,0.0325955419036569,Decrease,Intensity,SIB
+abuse,-0.0249126687113891,Decrease,Intensity,SIB
+anxiety,-0.0329948191315345,Decrease,Intensity,SIB
+depression,-0.0384141344486076,Decrease,Intensity,SIB
+mental_health,-0.0186412552553814,Decrease,Intensity,SIB
+mental_illness,-0.0290569647498303,Decrease,Intensity,SIB
+trauma,-0.0325955419036569,Decrease,Intensity,SIB
 abuse,0.025237609730612,Increase,Breadth,SIB
 anxiety,0.0158700063183673,Increase,Breadth,SIB
 depression,0.0354509269306122,Increase,Breadth,SIB
 mental_health,0.0105176553142858,Increase,Breadth,SIB
 mental_illness,0.0473863476,Increase,Breadth,SIB
 trauma,0.0612455576979591,Increase,Breadth,SIB
-abuse,0.0670606782554183,Decrease,Sentiment,absa
-anxiety,0.081134904598724,Decrease,Sentiment,absa
-depression,0.051972387035843,Decrease,Sentiment,absa
-mental_health,0.0272165069579147,Decrease,Sentiment,absa
-mental_illness,0.0104103675378021,Decrease,Sentiment,absa
-trauma,0.0554167027552612,Decrease,Sentiment,absa
+abuse,-0.0670606782554183,Decrease,Sentiment,absa
+anxiety,-0.081134904598724,Decrease,Sentiment,absa
+depression,-0.051972387035843,Decrease,Sentiment,absa
+mental_health,-0.0272165069579147,Decrease,Sentiment,absa
+mental_illness,-0.0104103675378021,Decrease,Sentiment,absa
+trauma,-0.0554167027552612,Decrease,Sentiment,absa
 abuse,0.017845312308194,Increase,Sentiment,absa
 anxiety,0.0453446189092938,Increase,Sentiment,absa
 depression,0.035056521354476,Increase,Sentiment,absa
 mental_health,0.0632295298671815,Increase,Sentiment,absa
 mental_illness,0.0503446661602239,Increase,Sentiment,absa
 trauma,0.0366866708178073,Increase,Sentiment,absa
-abuse,2.4663755102072304e-05,Decrease,Breadth,Breadth (lexeme)
+abuse,-2.4663755102072304e-05,Decrease,Breadth,Breadth (lexeme)
 anxiety,0.0420570485551019,Increase,Breadth,Breadth (lexeme)
 depression,0.1218009555673469,Increase,Breadth,Breadth (lexeme)
 mental_health,0.0009483504897958,Increase,Breadth,Breadth (lexeme)
