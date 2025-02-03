@@ -1,0 +1,7 @@
+target,total_change,n_epochs,avg_rate_of_change,measure,dimension,condition
+abuse,0.2908523329591609,10,0.029085233295916092,Lexeme,Breadth,increase
+anxiety,0.45005345004081637,10,0.04500534500408164,Lexeme,Breadth,increase
+depression,0.8429135076734693,10,0.08429135076734692,Lexeme,Breadth,increase
+mental_health,-0.013127592816326299,10,-0.00131275928163263,Lexeme,Breadth,increase
+mental_illness,0.2445610273861732,10,0.02445610273861732,Lexeme,Breadth,increase
+trauma,0.21022684943056186,10,0.021022684943056185,Lexeme,Breadth,increase
