@@ -1,0 +1,2 @@
+# install xl-lexeme from a notebook
+pip install git+https://github.com/pierluigic/xl-lexeme.git
