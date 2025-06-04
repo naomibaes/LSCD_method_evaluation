@@ -1,6 +1,8 @@
 # LSC-Eval  
 *A General Framework for Evaluating Methods to Detect Dimensions of Lexical Semantic Change Using LLM-Generated Synthetic Data*
 
+Baes, N., Merx, R., Haslam, N., Vylomova, E., & Dubossarsky, H. (2025). LSC-Eval: A General Framework to Evaluate Methods for Assessing Dimensions of Lexical Semantic Change Using LLM-Generated Synthetic Data. arXiv preprint arXiv:2503.08042.
+
 ![ACL Findings](https://img.shields.io/badge/ACL%20Findings-Accepted-blueviolet)
 
 ---
