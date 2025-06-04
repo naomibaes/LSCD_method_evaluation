@@ -29,7 +29,7 @@ We apply LSC-Eval to six psychology-related concepts and evaluate method perform
 
 Our findings support the validity of synthetic benchmarks, show that targeted methods reliably track changes along SIB dimensions, and reveal that even state-of-the-art LSC models underperform on affective dimensions (Sentiment, Intensity).
 
-**LSC-Eval** thus offers a reusable and extensible framework for evaluating LSC methods in a theory-driven, dimension- and domain-specific way, with particular value for the social sciences.
+**LSC-Eval** thus offers a general-purpose framework for evaluating LSC methods in a theory-driven, dimension- and domain-specific way, with particular value for the social sciences.
 
 ---
 
