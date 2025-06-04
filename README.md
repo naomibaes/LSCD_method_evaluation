@@ -43,17 +43,33 @@ Our findings validate the use of synthetic benchmarks, demonstrate that tailored
 
 ## 🧪 Dimensions of Change
 
-LSC-Eval operationalizes and benchmarks change detection across three semantic dimensions:
+LSC-Eval operationalizes and benchmarks change detection across three semantic dimensions, as defined in the **SIBling framework** ([Baes et al., 2024](https://aclanthology.org/2024.acl-long.76/)):
 
-| Dimension  | Description |
-|------------|-------------|
-| **Sentiment**  | Affective polarity: positive ↔ negative |
-| **Intensity**  | Affective strength: mild ↔ intense |
-| **Breadth**    | Semantic generality: narrow ↔ broad |
+| Dimension   | Definition |
+|-------------|------------|
+| **Sentiment** | Refers to the degree to which a word’s meaning acquires more positive (*elevation*, *amelioration*) or negative (*degeneration*, *pejoration*) connotations. |
+| **Intensity** | Refers to the degree to which a word’s meaning becomes more (*hyperbole*) or less (*meiosis*) emotionally or referentially intense—e.g., stronger, potent, or higher-arousal in meaning. |
+| **Breadth** | Refers to the degree to which a word’s semantic range expands (*widening*, *generalization*) or contracts (*narrowing*, *specialization*). This can involve shifts in category, scope, or usage context. |
 
-Each dimension is injected via targeted synthetic interventions, allowing for fine-grained benchmarking of model sensitivity.
+Each dimension is evaluated independently using **targeted synthetic interventions** applied to natural corpus sentences across 5-year intervals. This enables fine-grained benchmarking of whether models can detect subtle and dimension-specific semantic shifts over time.
 
 ---
+## 🔗 Companion Resources
+
+This repository is part of a broader evaluation ecosystem. While it implements the general three-stage **LSC-Eval** framework using examples from psychology, the framework itself is **domain-agnostic** and can be extended to other dimensions of change—including non-LSC dimensions—and applied across domains.
+
+Below are its current applications:
+
+- 📁 **Synthetic-LSC Pipeline (Psychology domain)**  
+  [Synthetic-LSC Pipeline](https://github.com/naomibaes/Synthetic-LSC_pipeline)  
+  Contains synthetic datasets simulating Sentiment, Intensity, and Breadth (SIB) for six psychology-related target concepts.
+
+- 📁 **Psychology Corpus (Input Source)**  
+  [Psychology Corpus](https://github.com/naomibaes/psychology_corpus)  
+  A year-partitioned corpus of article abstracts from academic psychology journals.
+
+---
+
 
 ## 🚀 Getting Started
 
@@ -85,20 +101,6 @@ Each dimension is injected via targeted synthetic interventions, allowing for fi
 
 ---
 
-## 🔗 Companion Resources
-
-This repo is part of a broader evaluation ecosystem.
-
-- 📁 **Synthetic Dataset Generation (Psychology domain)**:  
-  [Synthetic-LSC Pipeline](https://github.com/naomibaes/Synthetic-LSC_pipeline)  
-  Includes full synthetic SIB datasets for 6 psychology targets.
-
-- 📁 **Psychology Corpus (Input Source)**:  
-  [Psychology Corpus](https://github.com/naomibaes/psychology_corpus)  
-  Sentence-level, year-stamped academic abstracts from psychology articles.
-
----
-
 ## 📬 Contact
 
 For questions, suggestions, or collaboration inquiries, contact:  
@@ -110,7 +112,7 @@ For questions, suggestions, or collaboration inquiries, contact:
 
 ## 🙏 Acknowledgements
 
-Special thanks to **Raphael Merx** for foundational contributions to the synthetic generation pipeline, ABSA sentiment classification integration, and XL-LEXEME embeddings.
+Special thanks to **Raphael Merx** for foundational contributions to the synthetic generation pipeline, ABSA sentiment classification idea (to classify sentiment using the word-in-context approach), and use XL-LEXEME to get word transformer embeddings.
 
-This work was developed in collaboration with  
+This work was developed in collaboration with, and under the supervision of:  
 **Haim Dubossarsky, Ekaterina Vylomova, and Nick Haslam.**
