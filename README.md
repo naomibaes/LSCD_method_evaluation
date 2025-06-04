@@ -12,7 +12,7 @@
 To address this gap, we introduce **LSC-Eval**, a novel three-stage general-purpose evaluation framework designed to:
 1. **Generate synthetic datasets** that simulate theory-driven LSC using In-Context Learning and a lexical database;
 2. **Evaluate the sensitivity** of computational methods to synthetic change; and
-3. **Assess method suitability** for detecting change across specific dimensions and domains.
+3. **Assess method suitability** for detecting change within and across specific dimensions and domains.
 
 LSC-Eval is applied to simulate change along the **Sentiment**, **Intensity**, and **Breadth** (SIB) dimensions—defined in the [SIBling framework](https://github.com/naomibaes/SIBling-framework)—using case studies from psychology. We then evaluate how well selected methods detect these controlled interventions.  
 
