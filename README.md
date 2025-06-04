@@ -1,7 +1,10 @@
 # LSC-Eval  
 *A General Framework for Evaluating Methods to Detect Dimensions of Lexical Semantic Change Using LLM-Generated Synthetic Data*
 
-Baes, N., Merx, R., Haslam, N., Vylomova, E., & Dubossarsky, H. (2025). LSC-Eval: A General Framework to Evaluate Methods for Assessing Dimensions of Lexical Semantic Change Using LLM-Generated Synthetic Data. arXiv preprint arXiv:2503.08042.
+📄 **Citation**:  
+Baes, N., Merx, R., Haslam, N., Vylomova, E., & Dubossarsky, H. (2025).  
+*LSC-Eval: A General Framework to Evaluate Methods for Assessing Dimensions of Lexical Semantic Change Using LLM-Generated Synthetic Data.*  
+_arXiv preprint_, arXiv:2503.08042. [View on arXiv](https://arxiv.org/abs/2503.08042)
 
 ![ACL Findings](https://img.shields.io/badge/ACL%20Findings-Accepted-blueviolet)
 
@@ -9,18 +12,24 @@ Baes, N., Merx, R., Haslam, N., Vylomova, E., & Dubossarsky, H. (2025). LSC-Eval
 
 ## 📄 About
 
-**Lexical Semantic Change (LSC)** provides insight into evolving cultural and social dynamics. Yet, the validity of methods for measuring different kinds of LSC remains unestablished due to the absence of historical benchmark datasets.  
+**Lexical Semantic Change (LSC)** provides insight into evolving cultural and social dynamics. Yet, the validity of methods for measuring different kinds of LSC remains unestablished due to the absence of historical benchmark datasets.
 
-To address this gap, we introduce **LSC-Eval**, a novel three-stage general-purpose evaluation framework designed to:
-1. **Generate synthetic datasets** that simulate theory-driven LSC using In-Context Learning and a lexical database;
-2. **Evaluate the sensitivity** of computational methods to synthetic change; and
-3. **Assess method suitability** for detecting change within and across specific dimensions and domains.
+To address this gap, we introduce **LSC-Eval**, a general-purpose three-stage evaluation framework designed to benchmark computational LSC methods under controlled, interpretable conditions:
 
-LSC-Eval is applied to simulate change along the **Sentiment**, **Intensity**, and **Breadth (SIB)** dimensions—defined in the [SIBling framework]([https://github.com/naomibaes/SIBling-framework](https://aclanthology.org/2024.acl-long.76/)—using case studies from psychology. We then evaluate how well selected methods detect these controlled interventions.  
+1. **Stage 1 – Synthetic Dataset Generation:**  
+   Create synthetic corpora that simulate theory-driven semantic changes using In-Context Learning (ICL) with LLMs and lexical resources. This includes targeted manipulations along three semantic dimensions—**Sentiment**, **Intensity**, and **Breadth**—as formalized in the [SIBling framework](https://aclanthology.org/2024.acl-long.76/).
 
-Our findings validate the use of synthetic benchmarks, demonstrate that tailored methods reliably detect changes along SIB dimensions, and reveal that a state-of-the-art LSC model struggles to detect affective aspects of semantic change.  
+2. **Stage 2 – Method Evaluation:**  
+   Quantify each method’s ability to detect dimension-specific change by computing semantic scores (e.g., Valence, Arousal, Breadth) across injection levels and time bins. We test models such as ABSA classifiers and contextual embedding distances (MPNet, XL-LEXEME).
 
-**LSC-Eval** offers a reusable, extensible tool for benchmarking LSC methods across dimensions and domains, with particular relevance to the social sciences.
+3. **Stage 3 – Sensitivity & Suitability Analysis:**  
+   Systematically compare methods under a bootstrapped experimental setup to assess their **sensitivity** to controlled interventions and **suitability** for detecting LSC in specific semantic dimensions and domains.
+
+We apply LSC-Eval to six psychology-related concepts and evaluate method performance in detecting changes introduced via synthetic interventions.  
+
+Our findings support the validity of synthetic benchmarks, show that targeted methods reliably track changes along SIB dimensions, and reveal that even state-of-the-art LSC models underperform on affective dimensions (Sentiment, Intensity).
+
+**LSC-Eval** thus offers a reusable and extensible framework for evaluating LSC methods in a theory-driven, dimension- and domain-specific way, with particular value for the social sciences.
 
 ---
 
