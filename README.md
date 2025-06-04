@@ -42,15 +42,15 @@ Our findings validate the use of synthetic benchmarks, demonstrate that tailored
 
 ---
 
-## 🟣🟡🟡 Dimensions of Change
+## 🟢 🔴 🔵 Dimensions of Change
 
 LSC-Eval operationalizes and benchmarks change detection across three semantic dimensions, as defined in the **SIBling framework** ([Baes et al., 2024](https://aclanthology.org/2024.acl-long.76/)):
 
 | Dimension   | Definition | Example of Rising | Example of Falling |
 |-------------|------------|--------------------|---------------------|
-| **Sentiment** | Refers to the degree to which a word’s meaning acquires more positive (*elevation*, *amelioration*) or negative (*degeneration*, *pejoration*) connotations. | *craftsman* (once manual labor, now implies high skill); *geek* (derogatory → enthusiast) | *retarded* (neutral clinical → pejorative); *awful* (once awe-inspiring → very bad) |
-| **Intensity** | Refers to the degree to which a word’s meaning becomes more (*hyperbole*) or less (*meiosis*) emotionally or referentially intense—e.g., stronger, more potent, or higher-arousal in meaning. | *cool* (from temperature to strong approval); *hilarious* (from cheerful to extreme laughter) | *love* (expanded to mild liking); *trauma* (from physical injury to mild adversity) |
-| **Breadth** | Refers to the degree to which a word’s semantic range expands (*widening*, *generalization*) or contracts (*narrowing*, *specialization*), such as shifts in category, scope, or contextual usage. | *cloud* (meteorology → data storage); *partner* (business → romantic/domestic) | *doctor* (broad → mostly medical); *meat* (any food → animal flesh) |
+| 🟢 **Sentiment** | Refers to the degree to which a word’s meaning acquires more positive (*elevation*, *amelioration*) or negative (*degeneration*, *pejoration*) connotations. | *craftsman* (once manual labor, now implies high skill); *geek* (derogatory → enthusiast) | *retarded* (neutral clinical → pejorative); *awful* (once awe-inspiring → very bad) |
+| 🔴 **Intensity** | Refers to the degree to which a word’s meaning becomes more (*hyperbole*) or less (*meiosis*) emotionally or referentially intense—e.g., stronger, more potent, or higher-arousal in meaning. | *cool* (from temperature to strong approval); *hilarious* (from cheerful to extreme laughter) | *love* (expanded to mild liking); *trauma* (from physical injury to mild adversity) |
+| 🔵 **Breadth** | Refers to the degree to which a word’s semantic range expands (*widening*, *generalization*) or contracts (*narrowing*, *specialization*), such as shifts in category, scope, or contextual usage. | *cloud* (meteorology → data storage); *partner* (business → romantic/domestic) | *doctor* (broad → mostly medical); *meat* (any food → animal flesh) |
 
 Each dimension is evaluated independently using **targeted synthetic interventions** applied to natural corpus sentences across 5-year intervals. This enables fine-grained benchmarking of whether models can detect subtle and dimension-specific semantic shifts over time.
 
