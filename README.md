@@ -14,7 +14,7 @@ To address this gap, we introduce **LSC-Eval**, a novel three-stage general-purp
 2. **Evaluate the sensitivity** of computational methods to synthetic change; and
 3. **Assess method suitability** for detecting change within and across specific dimensions and domains.
 
-LSC-Eval is applied to simulate change along the **Sentiment**, **Intensity**, and **Breadth (SIB)** dimensions—defined in the [SIBling framework](https://github.com/naomibaes/SIBling-framework)—using case studies from psychology. We then evaluate how well selected methods detect these controlled interventions.  
+LSC-Eval is applied to simulate change along the **Sentiment**, **Intensity**, and **Breadth (SIB)** dimensions—defined in the [SIBling framework]([https://github.com/naomibaes/SIBling-framework](https://aclanthology.org/2024.acl-long.76/)—using case studies from psychology. We then evaluate how well selected methods detect these controlled interventions.  
 
 Our findings validate the use of synthetic benchmarks, demonstrate that tailored methods reliably detect changes along SIB dimensions, and reveal that a state-of-the-art LSC model struggles to detect affective aspects of semantic change.  
 
@@ -71,7 +71,7 @@ Current related resources include:
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (incomplete)
 
 1. **Create a virtual environment:**
    ```bash
