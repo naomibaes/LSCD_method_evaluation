@@ -21,17 +21,23 @@ Our findings validate the use of synthetic benchmarks, demonstrate that tailored
 **LSC-Eval** offers a reusable, extensible tool for benchmarking LSC methods across dimensions and domains, with particular relevance to the social sciences.
 
 ---
+## 📁 Repository Structure
 
-## 📂 Repository Structure
-
-This repository includes:
-
-- 📁 `produce_variations.ipynb`: The main notebook for generating synthetic variations of natural corpus sentences.
-- 📁 `prompt_utils/`: Scripts for generating In-Context Learning prompts using demonstration examples.
-- 📁 `eval_utils/`: Code for running embedding-based evaluation on synthetic data.
-- 📁 `resources/`: Includes example corpora, demonstration sentences, and dimension-specific dictionaries.
-- 📄 `.env`: Stores your OpenAI API key (not committed).
-- 📄 `requirements.txt`: Python dependencies.
+| Folder/File | Description |
+|-------------|-------------|
+| `0.0_corpus_preprocessing/` | Scripts for corpus preprocessing (e.g., sentence parsing, filtering for articles with targets) |
+| `0.1_descriptives/` | Scripts to compute descriptive statistics |
+| `1_sentiment/` | Sentiment-specific scripts and results (Valence index, ABSA Sentiment score) |
+| `2_breadth/` | Breadth-specific encoding, manipulation scripts, and results (Breadth score: MPNet and XL-LEXEME) |
+| `3_intensity/` | Intensity-specific evaluation scripts (Arousal index) |
+| `4_general_LSC/` | Scripts for computing general LSC score (using XL-LEXEME) |
+| `figures/` | Plotting scripts and figure outputs (contains some exploratory figures that were not published) |
+| `model_comparison/` | Scripts for method/model comparison analyses using synthetic change detection task in bootstrap experimental setup (50 sentences x 100 iterations per injection level) |
+| `supplementary_materials/` | Contains top siblings used in replacement strategies for each sampling strategies to give an idea of distribution of injected breadth contexts for each target (bootstrap and five year sampling) -- could not fit in paper |
+| `lexeme_utils.py` | Utility functions for lexeme-level manipulation |
+| `xlmr_utils.py` | XLM-R embedding computation and encoding scripts (did not end up proceeding with analysis, but good additional model to compare against as XLL was build on it) |
+| `requirements.txt` | Required packages for this project (may be incomplete) |
+| `README.md` | You are here! |
 
 ---
 
