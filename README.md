@@ -72,16 +72,14 @@ This repository is part of a broader evaluation ecosystem. While it implements t
 
 Current related resources include:
 
-- **Synthetic-LSC Pipeline (Psychology domain):**  
-  [Synthetic-LSC Pipeline](https://github.com/naomibaes/Synthetic-LSC_pipeline)  
-  Pipeline for inputting natural sentences to create LLM-generated synthetic datasets simulating Sentiment, Intensity, and Breadth (SIB).
+- **Synthetic-LSC Pipeline (Psychology domain):**  [Synthetic-LSC Pipeline](https://github.com/naomibaes/Synthetic-LSC_pipeline)
+     Pipeline for inputting natural sentences to create LLM-generated synthetic datasets simulating Sentiment, Intensity, and Breadth (SIB).
 
 - **Dataset Details:** [Information Sheet](https://github.com/naomibaes/Synthetic-LSC_pipeline/blob/main/information_sheet_synthetic_SIB_psychology.md)
-  Contains synthetic datasets simulating Sentiment, Intensity, and Breadth (SIB) for six psychology-related target terms.
+     Contains synthetic datasets simulating Sentiment, Intensity, and Breadth (SIB) for six psychology-related target terms.
 
-- **Psychology Corpus (Input Source):**  
-  [Psychology Corpus](https://github.com/naomibaes/psychology_corpus)  
-  A year-stamped corpus of article abstracts from academic psychology journals.
+- **Psychology Corpus (Input Source):** [Psychology Corpus](https://github.com/naomibaes/psychology_corpus)  
+     A year-stamped corpus of article abstracts from academic psychology journals.
 
 ---
 
